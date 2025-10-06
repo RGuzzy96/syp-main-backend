@@ -5,6 +5,8 @@ router.post('/', async (req, res) => {
 
 });
 
-router.get('/dog')
+router.get('/dog', async (req, res) => {
+    
+})
 
 module.exports = router;
