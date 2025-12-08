@@ -14,34 +14,46 @@ export type Database = {
   }
   public: {
     Tables: {
-      experiment_processing_tickets: {
+      experiment_results: {
         Row: {
+          accuracy: number | null
           created_at: string
           experiment_id: string | null
           id: string
-          last_updated: string | null
-          status: string | null
+          kernel_time: number | null
+          logs: string[] | null
+          total_time: number | null
+          training_time: number | null
+          type: Database["public"]["Enums"]["results_type"] | null
           user_id: string | null
         }
         Insert: {
+          accuracy?: number | null
           created_at?: string
           experiment_id?: string | null
           id?: string
-          last_updated?: string | null
-          status?: string | null
+          kernel_time?: number | null
+          logs?: string[] | null
+          total_time?: number | null
+          training_time?: number | null
+          type?: Database["public"]["Enums"]["results_type"] | null
           user_id?: string | null
         }
         Update: {
+          accuracy?: number | null
           created_at?: string
           experiment_id?: string | null
           id?: string
-          last_updated?: string | null
-          status?: string | null
+          kernel_time?: number | null
+          logs?: string[] | null
+          total_time?: number | null
+          training_time?: number | null
+          type?: Database["public"]["Enums"]["results_type"] | null
           user_id?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "experiment_processing_tickets_experiment_id_fkey"
+            foreignKeyName: "experiment_results_experiment_id_fkey"
             columns: ["experiment_id"]
             isOneToOne: false
             referencedRelation: "experiments"
@@ -185,7 +197,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      results_type: "classical" | "quantum"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -312,6 +324,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      results_type: ["classical", "quantum"],
+    },
   },
 } as const
